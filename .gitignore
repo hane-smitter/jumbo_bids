@@ -3,6 +3,6 @@
 # dependencies
 /node_modules
 .env*
-!.env-cmdrc.example
+!.env*.example
 .bak
 /public/imgs/products/*
