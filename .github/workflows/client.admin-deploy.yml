@@ -1,12 +1,12 @@
-name: Deploy client user
+name: Deploy client admin
 
 on:
   push:
     branches:
-      - client.user
+      - client.admin
   pull_request:
     branches:
-      - client.user
+      - client.admin
 
 jobs:
   deploy:
