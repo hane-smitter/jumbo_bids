@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd -e development nodemon src/index.js",
-    "prod": "env-cmd -e production nodemon src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -30,7 +29,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "env-cmd": "^10.1.0",
+    "dotenv": "^16.0.0",
     "nodemon": "^2.0.15"
   }
 }
