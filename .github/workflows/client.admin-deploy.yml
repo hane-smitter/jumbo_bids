@@ -16,7 +16,7 @@ jobs:
       - name: Get the source code
         uses: actions/checkout@v2
         with:
-          ref: client.user
+          ref: client.admin
       - name: "install Node"
         uses: actions/setup-node@v2
         with:
