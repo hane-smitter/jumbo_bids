@@ -12,9 +12,11 @@ const CardRoot = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
   borderRadius: theme.spacing(2),
   border: "none",
-  minHeight: 450,
+  height: 500,
   maxWidth: 270,
   padding: 10,
+  display: "flex",
+  flexDirection: "column"
 }));
 const SectionImage = styled(Box)`
   height: 200px;
@@ -30,9 +32,12 @@ const SectionImage = styled(Box)`
 const SectionContent = styled(Stack)`
   justify-content: space-between;
   padding-block-start: 20px;
+  flex-grow: 1;
 `;
 const CardHeading = styled(CardHeader)`
   padding: 0;
+  width: 100%;
+  display: block;
 `;
 const CardHeadingText = styled(Typography)`
   color: #545a63;

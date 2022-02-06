@@ -20,7 +20,7 @@ const ContentContainer = styled("div")`
 
 const Layout = () => {
   return (
-    <Container>
+    <Container className="wrapper">
       <Header />
       <ContentContainer>
         <Outlet />

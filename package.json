@@ -1,5 +1,10 @@
 {
-  "name": "frontend",
+  "name": "client",
+  "author": {
+    "name": "zach",
+    "email": "hanesmitter3@gmail.com",
+    "url": "https://lookupzach.netlify.app"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,9 +15,9 @@
     "@mui/material": "^5.2.8",
     "@mui/styles": "^5.2.3",
     "@popmotion/popcorn": "^0.4.4",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "axios": "^0.21.4",
     "dayjs": "^1.10.7",
     "formik": "^2.2.9",
@@ -24,10 +29,10 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.0",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
-    "web-vitals": "^1.1.2",
+    "web-vitals": "^2.1.4",
     "yup": "^0.32.9"
   },
   "scripts": {

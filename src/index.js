@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import "@fontsource/lato";
 import { StyledEngineProvider } from "@mui/material/styles";
 
-import "./components/Fonts/TickingTimebombBB.ttf";
+// import "./components/Fonts/TickingTimebombBB.ttf";
 import store from "./redux/store";
 import "./index.css";
 import App from "./App";

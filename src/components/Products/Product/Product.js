@@ -1,5 +1,5 @@
 import React  from "react";
-import { CardContent, Tooltip, CardMedia } from "@mui/material";
+import { Tooltip, CardMedia } from "@mui/material";
 import { motion } from "framer-motion";
 import Styled from "./Styled";
 import defaultImg from "../../../images/products/defaultImg.jpeg";
@@ -37,7 +37,6 @@ const Product = ({ product }) => {
           <Tooltip title={product.product.name} placement="top-start">
             <Styled.CardHeading
               disableTypography
-              sx={{ width: "100%" }}
               subheader={
                 <Styled.CardHeadingText variant="body2">
                   {product.product.name.length > 60 ?

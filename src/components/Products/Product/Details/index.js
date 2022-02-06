@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
 import { useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { Stack } from "@mui/material";
 
 import LightBox from "./LightBox";
 import DarkBox from "./DarkBox";
@@ -83,7 +83,7 @@ const Detail = () => {
           component={Stack}
           sx={{ alignItems: "center", justifyContent: "center" }}
         >
-          <LightBox product={product} />
+          <LightBox product={product} loading={loading} />
         </Grid>
 
         {focusProductDetails?.bidders?.topActiveBidders.length > 0 && (
@@ -105,4 +105,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default React.memo(Detail);

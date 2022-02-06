@@ -1,23 +1,23 @@
 import React from "react";
-import {
-  CardContent,
-  Typography,
-  Button,
-} from "@mui/material";
+import { CardContent, Typography, Button, Skeleton } from "@mui/material";
 
 import Styled from "./Styled";
 import defaultImg from "../../../../../images/products/defaultImg.jpeg";
 import MoneyFormat from "../../../../utils/MoneyFormat";
 import CountDown from "./countDown";
 
-const LightBox = ({ product }) => {
+const LightBox = ({ product, loading }) => {
   return (
     <Styled.CardRoot raised>
-      <Styled.CardImage
-        component={"img"}
-        src={product?.product?.image ? product?.product?.image : defaultImg}
-        title={product?.product?.name}
-      />
+      {loading ? (
+        <Skeleton variant="rectangular" width={"100%"} height={150} />
+      ) : (
+        <Styled.CardImage
+          component={"img"}
+          src={product?.product?.image ? product?.product?.image : defaultImg}
+          title={product?.product?.name}
+        />
+      )}
 
       <CardContent>
         <CountDown product={product} />

@@ -4,7 +4,9 @@ import {
   Grid,
   CircularProgress,
   Stack,
+  Box,
   useMediaQuery,
+  ClickAwayListener,
 } from "@mui/material";
 import {
   Category as CategoryIcon,
@@ -19,19 +21,22 @@ import Styled from "./Styled";
 
 const Products = (props) => {
   const {
-    products,
-    loading,
-    err,
-    categories,
-    activeCategory,
-    pageInfo,
-    nextPageToken,
-  } = props.bidProducts;
-  const { updateProducts, updateActiveCategory } = props;
+    updateProducts,
+    updateActiveCategory,
+    bidProducts: {
+      products,
+      loading,
+      err,
+      categories,
+      activeCategory,
+      pageInfo,
+      nextPageToken,
+    },
+  } = props;
 
   const [categoryOpen, setCategoryOpen] = React.useState(false);
   const [loadMore, setLoadMore] = React.useState(true);
-  console.log("LOADMORE: ", loadMore);
+  // console.log("LOADMORE: ", loadMore);
 
   const fetchMoreProducts = () => {
     updateProducts({ nextPageToken }, "secondary");
@@ -43,6 +48,9 @@ const Products = (props) => {
   const handleCategoryClick = () => {
     setCategoryOpen(!categoryOpen);
   };
+  const handleCatClickAway = () => {
+    setCategoryOpen(false);
+  };
 
   // React.useEffect(() => {}, []);
   React.useEffect(() => {
@@ -53,95 +61,103 @@ const Products = (props) => {
         setLoadMore((_) => true);
       }
     }
-  }, [products]);
+  }, [products, pageInfo?.totalResults]);
 
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
   return (
     <>
       <Styled.CB>
-        <Styled.CBList
-          component="nav"
-          aria-labelledby="categories"
-          disablePadding
-          sx={{ bgcolor: categoryOpen ? "#486391" : "inherit" }}
-        >
-          <Styled.CBListItem
-            sx={{ py: 0.5 }}
-            button
-            onClick={handleCategoryClick}
-          >
-            <Styled.CBListItemIcon>
-              <CategoryIcon />
-            </Styled.CBListItemIcon>
-            <Styled.CBListItemText
-              primary="Browse Categories"
-              primaryTypographyProps={{
-                fontSize: 14,
-                fontWeight: "medium",
-                letterSpacing: 0,
-              }}
-              secondary={categories
-                ?.slice(
-                  0,
-                  Math.ceil(Math.min(Math.max(categories.length * 0.3, 4), 10))
-                )
-                ?.map((category) => `${decode(category.name)}, `)}
-              secondaryTypographyProps={{
-                noWrap: true,
-                fontSize: 12,
-                lineHeight: "16px",
-                color: categoryOpen ? "rgba(0,0,0,0)" : "rgba(255,255,255,0.5)",
-              }}
-            />
-            <ArrowDropUpIcon
-              sx={{
-                mr: -1,
-                transform: categoryOpen ? "rotate(-180deg)" : "rotate(0)",
-                transition: "0.2s",
-              }}
-            />
-          </Styled.CBListItem>
-        </Styled.CBList>
-        <Styled.CBCollapse in={categoryOpen} timeout="auto" unmountOnExit>
-          <Styled.CBList
-            sx={{
-              height: "100%",
-              boxSizing: "content-box",
-              overflowY: "auto",
-              padding: "0 20px 0 0",
-            }}
-            component="div"
-          >
-            <Styled.CBListItem
-              button
-              onClick={() => {
-                setCategoryOpen(false);
-                updateActiveCategory("All");
-                updateProducts();
-              }}
+        <ClickAwayListener onClickAway={handleCatClickAway}>
+          <Box component="span" sx={{ maxWidth: 300 }}>
+            <Styled.CBList
+              component="nav"
+              aria-labelledby="categories"
+              disablePadding
+              sx={{ bgcolor: categoryOpen ? "#486391" : "inherit" }}
             >
-              <Styled.CBListItemText primary={"All"} />
-            </Styled.CBListItem>
-            {categories?.map((category) => (
               <Styled.CBListItem
+                sx={{ py: 0.5 }}
                 button
-                key={category._id}
-                onClick={() => {
-                  setCategoryOpen(false);
-                  updateActiveCategory(
-                    decode(category.name),
-                    category.category_slug
-                  );
-                  updateProducts({ category: category.category_slug });
-                }}
+                onClick={handleCategoryClick}
               >
+                <Styled.CBListItemIcon>
+                  <CategoryIcon />
+                </Styled.CBListItemIcon>
                 <Styled.CBListItemText
-                  primary={decode(category.name ? category.name : "")}
+                  primary="Browse Categories"
+                  primaryTypographyProps={{
+                    fontSize: 14,
+                    fontWeight: "medium",
+                    letterSpacing: 0,
+                  }}
+                  secondary={categories
+                    ?.slice(
+                      0,
+                      Math.ceil(
+                        Math.min(Math.max(categories.length * 0.3, 4), 10)
+                      )
+                    )
+                    ?.map((category) => `${decode(category.name)}, `)}
+                  secondaryTypographyProps={{
+                    noWrap: true,
+                    fontSize: 12,
+                    lineHeight: "16px",
+                    color: categoryOpen
+                      ? "rgba(0,0,0,0)"
+                      : "rgba(255,255,255,0.5)",
+                  }}
+                />
+                <ArrowDropUpIcon
+                  sx={{
+                    mr: -1,
+                    transform: categoryOpen ? "rotate(-180deg)" : "rotate(0)",
+                    transition: "0.2s",
+                  }}
                 />
               </Styled.CBListItem>
-            ))}
-          </Styled.CBList>
-        </Styled.CBCollapse>
+            </Styled.CBList>
+            <Styled.CBCollapse in={categoryOpen} timeout="auto" unmountOnExit>
+              <Styled.CBList
+                sx={{
+                  height: "100%",
+                  boxSizing: "content-box",
+                  overflowY: "auto",
+                  padding: "0 20px 0 0",
+                }}
+                component="div"
+              >
+                <Styled.CBListItem
+                  button
+                  onClick={() => {
+                    setCategoryOpen(false);
+                    updateActiveCategory("All");
+                    updateProducts();
+                  }}
+                >
+                  <Styled.CBListItemText primary={"All"} />
+                </Styled.CBListItem>
+                {categories?.map((category) => (
+                  <Styled.CBListItem
+                    button
+                    key={category._id}
+                    onClick={() => {
+                      setCategoryOpen(false);
+                      updateActiveCategory(
+                        decode(category.name),
+                        category.category_slug
+                      );
+                      updateProducts({ category: category.category_slug });
+                    }}
+                  >
+                    <Styled.CBListItemText
+                      primary={decode(category.name ? category.name : "")}
+                    />
+                  </Styled.CBListItem>
+                ))}
+              </Styled.CBList>
+            </Styled.CBCollapse>
+          </Box>
+        </ClickAwayListener>
       </Styled.CB>
 
       <InfiniteScroll
@@ -213,8 +229,8 @@ const Products = (props) => {
                 : activeCategory?.name
               : ""}
           </Typography>
-          {
-            products?.length > 0 && loading && <Stack
+          {products?.length > 0 && loading && (
+            <Stack
               sx={{
                 position: "absolute",
                 top: 0,
@@ -245,7 +261,7 @@ const Products = (props) => {
                 />
               </span>
             </Stack>
-          }
+          )}
         </Stack>
         {!products?.length || !products[0]?.product ? (
           <Typography
