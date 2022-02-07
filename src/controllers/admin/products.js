@@ -1,12 +1,42 @@
 import fs from "fs";
 import { validationResult } from "express-validator";
 import mongoose from "mongoose";
+import schedule from "node-schedule";
 
 import Product from "../../models/Product.js";
 import { clearCacheKey } from "../../db/services/cache.js";
 import ProductBidDetail from "../../models/ProductBidDetail.js";
 import Category from "../../models/Category.js";
 import ErrorResponse from "../../_helpers/error/ErrorResponse.js";
+
+const scheduleTask = schedule.scheduleJob.bind(schedule);
+// scheduled task executer
+function bidEndtimeUpdater(id) {
+  // console.log("End Time updatter running!");
+  const rule = new schedule.RecurrenceRule();
+  rule.hour = 23;
+  let current = new Date();
+  let task = {};
+  task = scheduleTask(rule, async function (fireDate) {
+    // console.log("scheduled update running...@ " + fireDate);
+    const item = await ProductBidDetail.findById(id);
+    if (item.extraSlots !== 0) {
+      // console.log("extra slots not yet zero, endtime updating...");
+      await ProductBidDetail.findByIdAndUpdate(
+        item._id,
+        {
+          endTime: new Date().setHours(current.getHours() + 24),
+        },
+        { returnDocument: "after" }
+      );
+    } else {
+      // console.log("task(End time updater) has just been cancelled");
+      task?.cancel();
+      clearCacheKey("productbiddetails");
+    }
+  });
+  return task;
+}
 
 export const getProducts = async (req, res, next) => {
   try {
@@ -53,7 +83,7 @@ export const getBiddableProducts = async (req, res, next) => {
           match,
         })
         .sort([["endTime", 1]]);
-        res.json(biddableProducts);
+      res.json(biddableProducts);
     } else {
       const biddableProducts = await ProductBidDetail.find({
         // endTime: { $gt: new Date().toISOString() },
@@ -82,8 +112,6 @@ export const getBiddableProducts = async (req, res, next) => {
       //   .sort([["endTime", 1]]);
       res.json(biddableProducts);
     }
-
-    
   } catch (err) {
     next(err);
   }
@@ -153,10 +181,33 @@ export const createProductBidDetails = async (req, res, next) => {
       throw new ErrorResponse(undefined, 422, errorsBag);
     }
 
+    req.body.startTime = new Date(req.body.startTime).toISOString();
+    req.body.endTime = new Date(req.body.endTime).toISOString();
+
     const bidDetails = new ProductBidDetail(req.body);
-    /* console.log('bid product');
-        console.log(bidDetails); */
-    await bidDetails.save();
+    const savedItem = await bidDetails.save();
+    // console.log("saved Item:::", savedItem);
+
+    const when = new Date(savedItem.endTime);
+    scheduleTask(when, async function () {
+      // console.log("Task scheduled to run on item endTime: " + when);
+      let updaterId;
+      if (savedItem.extraSlots !== 0) {
+        let current = new Date();
+        // console.log("hey extraSlots not zeroed out");
+        await ProductBidDetail.findByIdAndUpdate(
+          savedItem._id,
+          {
+            endTime: new Date().setHours(current.getHours() + 24),
+          },
+          { returnDocument: "after" }
+        );
+        updaterId = bidEndtimeUpdater(savedItem._id);
+      } else if (updaterId) {
+        // console.log("updaterId cancelled", updaterId);
+        updaterId.cancel();
+      }
+    });
     clearCacheKey("productbiddetails");
     res.status(201).json({
       info: {

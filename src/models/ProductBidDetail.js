@@ -53,6 +53,7 @@ ProductBidDetailSchema.pre("validate", async function (next) {
   const prodBidDet = await ProductBidDetail.findOne({
     product: mongoose.Types.ObjectId(this.product),
   });
+  console.log("this scheduler", this.scheduler);
   if (prodBidDet) throw new Error("This product detail entry already exists");
   if (this.targetAmount < product.cost)
     throw new Error("Target Amount is less than cost of Product");
