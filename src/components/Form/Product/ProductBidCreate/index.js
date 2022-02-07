@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import * as Yup from "yup";
+import formatISO from "date-fns/formatISO";
 import { Formik, Field } from "formik";
 import {
   InputAdornment,
@@ -95,6 +96,8 @@ const ProductBidCreate = (props) => {
             product: location.state._id,
           }}
           onSubmit={(values, actions) => {
+            values.startTime = formatISO(values.startTime);
+            values.endTime = formatISO(values.endTime);
             dispatch(createProductBid(values));
             actions.setSubmitting(loading);
           }}
