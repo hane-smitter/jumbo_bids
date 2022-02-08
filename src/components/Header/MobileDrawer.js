@@ -31,12 +31,12 @@ const MobileDrawer = ({ openMenu, setOpenMenu }) => {
         open={openMenu}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
+        sx={{ maxWidth: 400, width: "60%" }}
       >
         <List
           sx={{
             height: "100%",
             width: "100%",
-            maxWidth: 400,
             bgcolor: "primary.light",
           }}
         >
@@ -53,7 +53,7 @@ const MobileDrawer = ({ openMenu, setOpenMenu }) => {
               button
               key={index}
               onClick={() => {
-                console.log("LISTITEM clicked!!!");
+                // console.log("LISTITEM clicked!!!");
                 setOpenMenu(false);
                 navigate(navigation.href);
               }}

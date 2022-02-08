@@ -68,9 +68,18 @@ const Header = () => {
         ) : (
           <>
             <Search lgScreen={lgScreen} />
-            <Styled.Btn color="secondary" variant="contained">
-              register
-            </Styled.Btn>
+            <Stack
+              sx={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                mt: 2,
+              }}
+            >
+              <Styled.Btn color="secondary" variant="contained">
+                register
+              </Styled.Btn>
+            </Stack>
           </>
         )}
       </Styled.StackCont>

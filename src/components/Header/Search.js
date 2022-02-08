@@ -11,6 +11,7 @@ const Search = ({ lgScreen }) => {
       direction="row"
       sx={(theme) => ({
         [theme.breakpoints.up("md")]: { marginInline: "auto" },
+        [theme.breakpoints.down("md")]: { justifyContent: "center" },
       })}
     >
       <FormControl>
@@ -28,13 +29,19 @@ const Search = ({ lgScreen }) => {
         ) : (
           <Styled.SearchInput
             color="secondary"
-            placeholder="Search inventory by model, name and more..."
+            placeholder="Search by model, name and more..."
+            smScreen="1"
             disableUnderline={true}
             sx={{ pl: 1 }}
           />
         )}
       </FormControl>
-      <Styled.Btn search="1" color="secondary" variant="contained">
+      <Styled.Btn
+        search="1"
+        color="secondary"
+        variant="contained"
+        sx={{ [theme.breakpoints.down("md")]: { minWidth: 54 } }}
+      >
         {lgScreen ? "Search Inventory" : <SearchIcon />}
       </Styled.Btn>
     </Stack>

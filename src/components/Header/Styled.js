@@ -89,6 +89,9 @@ const SearchInput = styled(Input)`
   & input::placeholder {
     font-size: 13px;
   }
+  @media only screen and(max-width: 450px) {
+    width: auto;
+  }
 `;
 
 const Styles = {

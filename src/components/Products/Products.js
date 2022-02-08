@@ -99,10 +99,7 @@ const Products = (props) => {
                     )
                     ?.map((category, index, cats) => {
                       let { name } = category;
-                      if (cats.length - 1 === index) {
-                        name = name.replace(/(,\s)+$/, "");
-                      }
-                      return `${decode(name)}, `;
+                      return `${decode(name)}${(cats.length - 1 === index) ? ", ": ""}`;
                     })}
                   secondaryTypographyProps={{
                     noWrap: true,
