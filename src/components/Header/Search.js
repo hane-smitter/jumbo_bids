@@ -1,12 +1,10 @@
 import React from "react";
 import { FormControl, InputAdornment, Stack } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
-import { useTheme } from '@mui/material/styles';
 
 import Styled from "./Styled";
 
 const Search = ({ lgScreen }) => {
-  const theme = useTheme();
   return (
     <Stack
       alignItems="center"
@@ -42,7 +40,7 @@ const Search = ({ lgScreen }) => {
         search="1"
         color="secondary"
         variant="contained"
-        sx={{ [theme.breakpoints.down("md")]: { minWidth: 54 } }}
+        sx={(theme) => ({ [theme.breakpoints.down("md")]: { minWidth: 54 } })}
       >
         {lgScreen ? "Search Inventory" : <SearchIcon />}
       </Styled.Btn>
