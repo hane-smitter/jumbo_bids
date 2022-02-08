@@ -100,7 +100,7 @@ const Products = (props) => {
                     ?.map((category, index, cats) => {
                       let { name } = category;
                       if (cats.length - 1 === index) {
-                        name.replace(/(,\s)+$/, "");
+                        name = name.replace(/(,\s)+$/, "");
                       }
                       return `${decode(name)}, `;
                     })}
