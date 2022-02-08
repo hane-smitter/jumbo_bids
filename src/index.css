@@ -5,7 +5,7 @@ body,
   width: 100%!important;
   height: 100%!important;
   margin: 0!important;
-  overflow-y: visible!important;
+  overflow-y: hidden!important;
 }
 
 body {
@@ -14,4 +14,7 @@ body {
 
 .wrapper {
   z-index: 2!important;
+}
+.scrollable {
+  overflow-y: auto;
 }

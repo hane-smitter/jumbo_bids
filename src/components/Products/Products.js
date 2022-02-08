@@ -97,7 +97,13 @@ const Products = (props) => {
                         Math.min(Math.max(categories.length * 0.3, 4), 10)
                       )
                     )
-                    ?.map((category) => `${decode(category.name)}, `)}
+                    ?.map((category, index, cats) => {
+                      let { name } = category;
+                      if (cats.length - 1 === index) {
+                        name.replace(/(,\s)+$/, "");
+                      }
+                      return `${decode(name)}, `;
+                    })}
                   secondaryTypographyProps={{
                     noWrap: true,
                     fontSize: 12,
@@ -122,6 +128,7 @@ const Products = (props) => {
                   height: "100%",
                   boxSizing: "content-box",
                   overflowY: "auto",
+                  overscrollBehavior: "contain",
                   padding: "0 20px 0 0",
                 }}
                 component="div"
