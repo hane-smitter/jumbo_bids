@@ -1,10 +1,12 @@
 import React from "react";
 import { FormControl, InputAdornment, Stack } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
+import { useTheme } from '@mui/material/styles';
 
 import Styled from "./Styled";
 
 const Search = ({ lgScreen }) => {
+  const theme = useTheme();
   return (
     <Stack
       alignItems="center"
