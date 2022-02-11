@@ -10,6 +10,8 @@ const Container = styled("div")(({ theme }) => ({
   minHeight: "100vh",
   width: "100vw",
   maxWidth: "100%",
+  display: "grid",
+  gridTemplateRows: "auto 1fr auto",
 }));
 const ContentContainer = styled("div")`
   width: 100%;

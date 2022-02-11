@@ -17,7 +17,7 @@ const MobileDrawer = ({ openMenu, setOpenMenu }) => {
   const navigate = useNavigate();
 
   const toggleDrawer = (open) => (event) => {
-    if (event && event.type === "keydown" && event.key === "Esc") {
+    if (event && event.type === "keydown" && event.key === "Escape") {
       setOpenMenu(false);
       return;
     }
@@ -31,7 +31,20 @@ const MobileDrawer = ({ openMenu, setOpenMenu }) => {
         open={openMenu}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
-        sx={{ maxWidth: 400, width: "60%" }}
+        sx={{
+          maxWidth: 400,
+          width: "60%",
+          ["@media (max-width: 400px)"]: { width: "80%" },
+        }}
+        PaperProps={{
+          sx: {
+            position: "absolute",
+            top: 0,
+            left: 0,
+            height: "100%",
+            width: "100%",
+          },
+        }}
       >
         <List
           sx={{

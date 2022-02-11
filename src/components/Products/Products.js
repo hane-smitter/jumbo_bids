@@ -99,7 +99,7 @@ const Products = (props) => {
                     )
                     ?.map((category, index, cats) => {
                       let { name } = category;
-                      return `${decode(name)}${(cats.length - 1 === index) ? ", ": ""}`;
+                      return `${decode(name)}${(cats.length - 1 === index) ? "": ", "}`;
                     })}
                   secondaryTypographyProps={{
                     noWrap: true,
@@ -271,6 +271,7 @@ const Products = (props) => {
           <Typography
             variant="h5"
             color="textSecondary"
+            gutterBottom
             align="center"
             component="div"
             sx={{

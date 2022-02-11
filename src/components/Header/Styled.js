@@ -78,6 +78,9 @@ const StackCont = styled(Stack)`
     margin: 0;
     color: #ffffff;
   }
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `;
 const SearchInput = styled(Input)`
   background-color: #ffffff;
@@ -89,7 +92,7 @@ const SearchInput = styled(Input)`
   & input::placeholder {
     font-size: 13px;
   }
-  @media only screen and(max-width: 450px) {
+  @media (max-width: 450px) {
     width: auto;
   }
 `;

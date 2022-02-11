@@ -30,7 +30,7 @@ const Search = ({ lgScreen }) => {
           <Styled.SearchInput
             color="secondary"
             placeholder="Search by model, name and more..."
-            smScreen="1"
+            smscreen="1"
             disableUnderline={true}
             sx={{ pl: 1 }}
           />

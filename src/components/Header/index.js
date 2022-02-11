@@ -14,7 +14,16 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   return (
     <header>
-      <Styled.StackCont direction="row" spacing={2}>
+      <Styled.StackCont
+        direction="row"
+        spacing={2}
+        sx={{
+          gap: 1,
+          ["@media (max-width: 975px)"]: {
+            justifyContent: "space-around",
+          },
+        }}
+      >
         <Styled.LogoLink to="/" component={RouterLink}>
           <Box component="img" src={Logo} style={{ width: "100%" }} />
         </Styled.LogoLink>
@@ -22,7 +31,7 @@ const Header = () => {
         {lgScreen && <Search lgScreen={lgScreen} />}
 
         {lgScreen ? (
-          <Box sx={{ marginInline: "auto" }}>
+          <Box>
             <Styled.Btn color="secondary" variant="contained">
               register
             </Styled.Btn>
@@ -31,19 +40,20 @@ const Header = () => {
             </Styled.Btn>
           </Box>
         ) : (
-          <>
+          <Box component="span" sx={{ ml: "auto!important" }}>
             <MenuIcon
               onClick={() => {
                 setOpenMenu(!openMenu);
               }}
             />
-          </>
+          </Box>
         )}
       </Styled.StackCont>
       <Styled.StackCont
         sx={{
           backgroundImage: "unset",
           py: lgScreen ? 0 : 2,
+          gap: 1,
         }}
         direction="row"
         spacing={1}
