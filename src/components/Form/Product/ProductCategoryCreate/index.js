@@ -75,7 +75,7 @@ const ProductCategoryCreate = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>Create Product Category | Bidspesa</title>
+        <title>Create Product Category | Jumbobids</title>
       </Helmet>
       <Container maxWidth="sm">
       <ShowFeedback

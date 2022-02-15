@@ -59,7 +59,7 @@ const ForgotPassword = () => {
   return (
     <>
       <Helmet>
-        <title>ForgotPassword | BidsPesa</title>
+        <title>ForgotPassword | Jumbobids</title>
       </Helmet>
       <ShowFeedback
         alertOpen={alertOpen}

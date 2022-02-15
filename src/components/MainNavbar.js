@@ -1,13 +1,9 @@
-import { Link as RouterLink } from 'react-router-dom';
-import { AppBar, Toolbar } from '@mui/material';
-import Logo from './Logo';
+import { Link as RouterLink } from "react-router-dom";
+import { AppBar, Toolbar } from "@mui/material";
+import Logo from "./Logo";
 
 const MainNavbar = (props) => (
-  <AppBar
-    elevation={0}
-    {...props}
-    style={{ backgroundColor:'#222222'}}
-  >
+  <AppBar elevation={0} {...props} style={{ backgroundColor: "#222222" }}>
     <Toolbar sx={{ height: 64 }}>
       <RouterLink to="/">
         <Logo />

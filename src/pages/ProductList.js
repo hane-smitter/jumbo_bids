@@ -8,7 +8,7 @@ const ProductList = () => {
   return (
     <>
       <Helmet>
-        <title>Products | BidsPesa</title>
+        <title>Products | Jumbobids</title>
       </Helmet>
       <Box
         sx={{

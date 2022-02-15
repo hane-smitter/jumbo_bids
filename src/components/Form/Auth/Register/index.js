@@ -74,7 +74,7 @@ const Register = () => {
   return (
     <>
       <Helmet>
-        <title>Register | BidsPesa</title>
+        <title>Register | Jumbobids</title>
       </Helmet>
       <Box
         sx={{

@@ -65,7 +65,7 @@ const ResetPassword = () => {
   return (
     <>
       <Helmet>
-        <title>ResetPassword | BidsPesa</title>
+        <title>ResetPassword | Jumbobids</title>
       </Helmet>
       <ShowFeedback
         alertOpen={alertOpen}

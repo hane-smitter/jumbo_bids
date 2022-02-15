@@ -1,6 +1,10 @@
 {
-  "name": "Admin panel",
-  "author": "Zacky",
+  "name": "jumbobids-admin-panel",
+  "author":{
+    "name": "Zacky",
+    "email": "hanesmitter3@gmail.com",
+    "url": "https://lookupzach.netlify.app"
+  },
   "licence": "MIT",
   "version": "1.0.0",
   "private": false,

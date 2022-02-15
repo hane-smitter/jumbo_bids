@@ -77,7 +77,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login | BidsPesa</title>
+        <title>Login | Jumbobids</title>
       </Helmet>
       <ShowFeedback
         alertOpen={alertOpen}
@@ -130,7 +130,7 @@ const Login = () => {
                 <Box sx={{ mb: 3 }}>
                   
                   <Typography align="center" color="textPrimary" gutterBottom variant="h1" style={{ textShadow: '0 0 24px #222',fontSize: '40px',fontWeight:900, textTransform: 'uppercase', padding:'5px' }}>
-                    Welcome to Bidspesa
+                    Welcome to Jumbobids
                   </Typography>
                   <Typography align="center" color="textPrimary" gutterBottom variant="h2">
                     Sign in
