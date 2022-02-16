@@ -36,7 +36,7 @@ const AuthUserSchema = mongoose.Schema(
         values: ["Admin", "User"],
         message: "{VALUE} is not supported",
       },
-      default: "Admin",
+      default: "User",
     },
     password: {
       type: String,

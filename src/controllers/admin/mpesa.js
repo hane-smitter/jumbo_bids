@@ -26,7 +26,7 @@ export const stkPush = (amount, mssisdn) => {
       PartyA: mssidn,
       PartyB: "174379",
       PhoneNumber: mssidn,
-      CallBackURL: "https://api.bidspesa.com/mpesa/callback",
+      CallBackURL: "https://raw-jumbobids.herokuapp.com/mpesa/callback",
       AccountReference: "LNMOnGlitch",
       TransactionDesc: "@SandboxTests",
     });

@@ -135,7 +135,7 @@ export const createProduct = async (req, res, next) => {
       throw new ErrorResponse(undefined, 422, errorsBag);
     }
 
-    const URL = process.env.APP_URL ?? "https://api.bidspesa.com:5000";
+    const URL = process.env.APP_URL ?? "https://raw-jumbobids.herokuapp.com";
     const filePath = `${URL}/imgs/products/${req.file.filename}`;
     const category = await Category.findById(req.body.category);
     if (!category) throw new ErrorResponse("This Category does not exist", 404);
@@ -288,7 +288,7 @@ export const updateProduct = async (req, res, next) => {
     }
 
     if (req.file) {
-      const URL = process.env.APP_URL ?? "https://api.bidspesa.com:5000";
+      const URL = process.env.APP_URL ?? "https://raw-jumbobids.herokuapp.com";
       const filePath = `${URL}/imgs/products/${req.file.filename}`;
       const imageUrl = product.image;
       let capturingRegex = /\/(?<img>[a-zA-Z0-9]+[_]\d+\.(jpe?g|png))$/;

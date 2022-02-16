@@ -133,7 +133,7 @@ export const forgotPassword = async (req, res, next) => {
     const resetToken = await user.getResetPasswordToken();
     const origin = req.get('origin');
     const resetUrl = `${
-      process.env.FRONTEND_APP_URL || origin || "https://api.bidspesa.com:3000"
+      process.env.FRONTEND_APP_URL || origin || "https://raw-jumbobids.herokuapp.com"
     }/passwordreset/${resetToken}`;
 
     const message = `
