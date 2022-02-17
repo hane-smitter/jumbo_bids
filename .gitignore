@@ -6,9 +6,5 @@
 *.bak
 
 #ignore files
-*.yml
-*.yaml
-**/public/imgs/products/  
-**/.github/workflows/
-**/public/imgs/products/
-**/public/imgs/
+public/imgs/products/**
+**/.github/
