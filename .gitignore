@@ -1,9 +1,14 @@
+
 **/node_modules/
 #ignore environments
 *.env-cmdrc
 *.env
 *.bak
-**/public/imgs/products  
-**/.github/
-**/public/imgs/products
+
+#ignore files
+*.yml
+*.yaml
+**/public/imgs/products/  
+**/.github/workflows/
+**/public/imgs/products/
 **/public/imgs/
