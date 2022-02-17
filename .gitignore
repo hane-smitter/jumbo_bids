@@ -5,3 +5,5 @@
 *.bak
 **/public/imgs/products  
 **/.github/
+**/public/imgs/products
+**/public/imgs/
